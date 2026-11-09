@@ -17,8 +17,11 @@
 
 ## core mechanics
 ▪ **Acoustic Isolation** — Curated, seamless soundscapes (transit, nature, synthetic noise) generated and mixed locally.
+
 ▪ **Adaptive Wake Protocols** — *Gentle* mode for light sleepers, and a high-intensity *Heavy Sleeper* override with tactile feedback.
+
 ▪ **Mindful Scrolling** — Optional local OS-level usage tracking that gently suggests a power nap when prolonged activity is detected.
+
 ▪ **Bilingual Native** — Built from the ground up for English and Polish (UI, accessibility, notifications).
 
 ## architecture
