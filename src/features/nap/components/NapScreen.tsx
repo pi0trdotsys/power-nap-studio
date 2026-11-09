@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Moon, Square } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { PHASE_COPY, SOUNDS, formatTime } from "../data";
 import type { NapController } from "../types";
 import { DurationPicker } from "./DurationPicker";
@@ -7,6 +8,12 @@ import { PlayButton } from "./PlayButton";
 import { SoundSheet, SOUND_ICONS } from "./SoundSheet";
 import { Stars } from "./Stars";
 import { SunOrb } from "./SunOrb";
+
+/** Makieta: godzina pobudki liczona od teraz. Codex może zostawić lub liczyć od startu. */
+function wakeAt(remainingSec: number) {
+  const d = new Date(Date.now() + remainingSec * 1000);
+  return `${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+}
 
 interface NapScreenProps {
   nap: NapController;
@@ -53,6 +60,15 @@ export function NapScreen({ nap }: NapScreenProps) {
         <p className="mt-3 text-sm text-muted-foreground">{PHASE_COPY[nap.phase]}</p>
       </section>
 
+      <div className="relative mt-6 h-6">
+        {inSession && (
+          <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+            {/* TODO(codex): godzina końca z prawdziwego timera */}
+            Pobudka o {wakeAt(nap.remainingSec)}
+          </p>
+        )}
+      </div>
+
       {nap.phase === "waking" ? (
         <div className="relative mt-10 flex w-full flex-col items-center gap-4">
           <button
@@ -65,7 +81,13 @@ export function NapScreen({ nap }: NapScreenProps) {
         </div>
       ) : (
         <>
-          <div className="relative mt-8 flex w-full justify-center">
+          <div
+            className={cn(
+              "relative mt-4 flex w-full justify-center transition-all duration-700",
+              inSession ? "pointer-events-none h-0 opacity-0" : "h-24 opacity-100",
+            )}
+            aria-hidden={inSession}
+          >
             <DurationPicker value={nap.minutes} onChange={nap.setMinutes} disabled={inSession} />
           </div>
 
@@ -73,10 +95,13 @@ export function NapScreen({ nap }: NapScreenProps) {
             <button
               type="button"
               onClick={() => setSoundsOpen(true)}
-              className="flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+              aria-label={`Dźwięk: ${sound.label}. Zmień`}
+              className="mx-auto flex flex-col items-center gap-2 rounded-2xl px-3 py-2 text-foreground/85 transition-colors hover:bg-secondary hover:text-foreground"
             >
-              <SoundIcon className="size-5" strokeWidth={1.5} />
-              <span className="text-[11px] tracking-[0.2em] uppercase">{sound.label}</span>
+              <span className="flex size-10 items-center justify-center rounded-full bg-secondary">
+                <SoundIcon className="size-5" strokeWidth={1.5} />
+              </span>
+              <span className="text-[11px] tracking-[0.15em] uppercase">{sound.label}</span>
             </button>
 
             <div className="flex justify-center">
@@ -87,10 +112,12 @@ export function NapScreen({ nap }: NapScreenProps) {
               type="button"
               onClick={nap.stop}
               disabled={!inSession}
-              className="flex flex-col items-center gap-2 text-muted-foreground transition-colors hover:text-foreground disabled:opacity-0"
+              className="mx-auto flex flex-col items-center gap-2 rounded-2xl px-3 py-2 text-foreground/85 transition-all duration-500 hover:bg-secondary hover:text-foreground disabled:pointer-events-none disabled:opacity-0"
             >
-              <Square className="size-5" strokeWidth={1.5} />
-              <span className="text-[11px] tracking-[0.2em] uppercase">Zakończ</span>
+              <span className="flex size-10 items-center justify-center rounded-full bg-secondary">
+                <Square className="size-4" strokeWidth={1.5} />
+              </span>
+              <span className="text-[11px] tracking-[0.15em] uppercase">Zakończ</span>
             </button>
           </nav>
         </>
