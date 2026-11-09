@@ -1,23 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { NapScreen } from "@/features/nap/components/NapScreen";
+import { useNapMock } from "@/features/nap/useNapMock";
+import type { NapPhase } from "@/features/nap/types";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const PHASES: NapPhase[] = ["idle", "napping", "paused", "waking"];
+
+/** `?phase=waking` itd. pozwala obejrzeć każdą fazę makiety bez logiki. */
 export const Route = createFileRoute("/")({
+  validateSearch: (s: Record<string, unknown>): { phase?: NapPhase } => {
+    const p = s["phase"] as NapPhase;
+    return PHASES.includes(p) ? { phase: p } : {};
+  },
+  head: () => ({
+    meta: [
+      { title: "Drzemka · łagodne dźwięki do power nap" },
+      { name: "description", content: "Prosta aplikacja z kojącymi dźwiękami, która pomaga zasnąć na krótką drzemkę." },
+      { property: "og:title", content: "Drzemka · łagodne dźwięki do power nap" },
+      { property: "og:description", content: "Kojące dźwięki i spokojny minutnik do krótkiej drzemki." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  const { phase } = Route.useSearch();
+  // TODO(codex): zamień na useNap() z prawdziwą logiką.
+  const nap = useNapMock(phase);
+  return <NapScreen key={phase} nap={nap} />;
 }
