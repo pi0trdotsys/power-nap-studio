@@ -9,6 +9,9 @@
 
 ## ✦ 𝗩 𝗜 𝗦 𝗨 𝗔 𝗟   𝗜 𝗗 𝗘 𝗡 𝗧 𝗜 𝗧 𝗬
 
+<img width="450" height="500" alt="power-nap-studio-main" src="https://github.com/user-attachments/assets/c38667f8-7fbc-4321-84e1-b8bbcc80a1be" />
+
+
 ```text
 ■■■■■■■■■■ OFF-WHITE       (Backgrounds & Calm)
 ■■■■■■■■■■ NAVY BLUE       (Focus & Night/Sleep)
