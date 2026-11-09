@@ -7,9 +7,10 @@ const PHASES: NapPhase[] = ["idle", "napping", "paused", "waking"];
 
 /** `?phase=waking` itd. pozwala obejrzeć każdą fazę makiety bez logiki. */
 export const Route = createFileRoute("/")({
-  validateSearch: (s: Record<string, unknown>): { phase?: NapPhase } => ({
-    phase: PHASES.includes(s.phase as NapPhase) ? (s.phase as NapPhase) : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): { phase?: NapPhase } => {
+    const p = s["phase"] as NapPhase;
+    return PHASES.includes(p) ? { phase: p } : {};
+  },
   head: () => ({
     meta: [
       { title: "Drzemka · łagodne dźwięki do power nap" },
