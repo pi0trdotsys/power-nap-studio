@@ -13,6 +13,7 @@
 ■■■■■■■■■■ OFF-WHITE       (Backgrounds & Calm)
 ■■■■■■■■■■ NAVY BLUE       (Focus & Night/Sleep)
 ■■■■■■■■■■ VIBRANT ORANGE  (Accents & Wakefulness)
+```
 
 ## core mechanics
 ▪ **Acoustic Isolation** — Curated, seamless soundscapes (transit, nature, synthetic noise) generated and mixed locally.
