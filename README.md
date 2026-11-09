@@ -1,24 +1,26 @@
-# Power Nap Studio
+# power nap studio
+*Rest, recalibrated.*
 
-Chcę napisać prostą, astheatic w kolorach brudna biel oraz granat i do tego vibrant orange aplikację służącą do odtwarzania białych dźwięków do drzemek. Ma być ładna, prosta, intuicyjna, nie mieć żadnych długich myślników, terminalowych motywów czy liquid glass. Ma wyciszać i zachęcać do power nap przy łagodnych dźwiękach. Zaproponuj 3 opcje rozwoju (wizualizacje) zanim zaczniesz budować. Masz zbudować tylko i wyłącznie makiety w TypeScript dla Codexa, on napisze logikę, Ty masz do mu pięknie udokumentować
+[EN] | [PL]
 
-This project was built with [Lovable](https://lovable.dev).
+---
 
-## Build with Lovable
+## [EN] vision
+A minimalist, native Android application designed to encourage restorative power naps and interrupt digital fatigue. Engineered in off-white, navy blue, and vibrant orange. No liquid glass, no terminal themes—just pure focus and calm. 
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/365b5513-dcf0-4fd0-ad70-15320c7f7b3d).
+## core mechanics
+▪ **Acoustic Isolation** — Curated, seamless soundscapes (transit, nature, synthetic noise) generated and mixed locally.
+▪ **Adaptive Wake Protocols** — *Gentle* mode for light sleepers, and a high-intensity *Heavy Sleeper* override with tactile feedback.
+▪ **Mindful Scrolling** — Optional local OS-level usage tracking that gently suggests a power nap when prolonged activity is detected.
+▪ **Bilingual Native** — Built from the ground up for English and Polish (UI, accessibility, notifications).
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## architecture
+Prototyped in React (TanStack Start, Tailwind 4) via Lovable. Transitioning to a **Native Android** (Kotlin + Jetpack Compose) foundation to ensure robust background audio persistence, exact alarm scheduling, and secure `UsageStatsManager` integration.
 
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
+## environment setup
+Current web prototype iteration:
+```bash
+git clone [https://github.com/pi0trdotsys/power-nap-studio.git](https://github.com/pi0trdotsys/power-nap-studio.git)
+cd power-nap-studio
 npm i
 npm run dev
-```
