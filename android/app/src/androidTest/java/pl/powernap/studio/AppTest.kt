@@ -19,6 +19,9 @@ class AppTest {
     @get:Rule val compose = createEmptyComposeRule()
     private val instrumentation get()=InstrumentationRegistry.getInstrumentation()
     private val context: Context get()=instrumentation.targetContext
+    private fun shell(command: String) {
+        android.os.ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(command)).use { it.readBytes() }
+    }
     private fun screenshot(language: String,name: String) {
         compose.waitForIdle()
         Thread.sleep(400)
@@ -66,10 +69,12 @@ class AppTest {
                 context.startService(Intent(context,NapService::class.java).setAction("STOP"))
                 compose.waitUntil(5000) {store.session.phase==Phase.IDLE}
                 assertTrue(Notices.remind(context))
-                instrumentation.uiAutomation.executeShellCommand("cmd statusbar expand-notifications").close()
-                Thread.sleep(700)
+                shell("cmd statusbar expand-notifications")
+                val title=localized(context).getString(R.string.reminder_title)
+                compose.waitUntil(15000) { instrumentation.uiAutomation.rootInActiveWindow?.findAccessibilityNodeInfosByText(title)?.isNotEmpty()==true }
+                Thread.sleep(1500)
                 screenshot(language,"notification")
-                instrumentation.uiAutomation.executeShellCommand("cmd statusbar collapse").close()
+                shell("cmd statusbar collapse")
                 ReminderReceiver().onReceive(context,Intent("LATER"))
                 assertTrue(store.mutedUntil>System.currentTimeMillis()+3500000)
             }

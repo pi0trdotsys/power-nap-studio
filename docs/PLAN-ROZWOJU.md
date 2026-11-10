@@ -2,6 +2,8 @@
 
 Stan analizy: 9 listopada 2026. Poniższe funkcje są propozycją, nie opisem gotowej implementacji.
 
+Aktualizacja 10 listopada 2026: implementacja Androida jest w `android/`. Ten dokument zachowuje historię analizy; aktualny, wykonany zakres opisuje [README](../README.md). Wersja Android używa natywnego audio i opcjonalnego Accessibility, bez rozszerzenia przeglądarki i bez monitorowania przez UsageStats.
+
 ## Uzgodniony zakres: Android, PL i EN
 
 Aktualizacja po doprecyzowaniu przez użytkownika: jedyną platformą docelową jest Android. Obserwacja ma obejmować korzystanie z innych aplikacji na telefonie. Poniższe wcześniejsze warianty web/rozszerzenie/desktop pozostają zapisem analizy, a rekomendacja rozszerzenia jest nieaktualna. Nadal obowiązuje etap analizy i propozycji przed budową.

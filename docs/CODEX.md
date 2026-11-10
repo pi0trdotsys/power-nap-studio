@@ -1,5 +1,7 @@
 # Drzemka · przekazanie dla Codexa
 
+> Aktualizacja 10 listopada 2026: ten dokument opisuje oryginalną makietę webową. Aplikacja Android z PL/EN znajduje się w `android/`; aktualny zakres i instrukcje są w [README](../README.md) i [architekturze Androida](ANDROID-ARCHITECTURE.md). Na życzenie użytkownika natywna aplikacja zawiera również mocny tryb pobudki „Dla śpiochów”. Poniższe ograniczenie do łagodnego wybudzania dotyczy pierwotnego projektu, nie tego trybu.
+
 Ten projekt zawiera **wyłącznie makiety UI** w TypeScript (React 19, TanStack Start, Tailwind v4).
 Twoje zadanie: napisać logikę (audio, timer, wybudzanie, zapis ustawień) bez zmiany wyglądu.
 
