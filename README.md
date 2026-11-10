@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <p align="center"><img src="public/drzemka-icon.svg" width="96" alt="Drzemka: słońce nad horyzontem / sun on the horizon" /></p>
 
 # Drzemka · Power Nap Studio
